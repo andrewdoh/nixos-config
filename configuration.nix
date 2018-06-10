@@ -33,6 +33,7 @@
   environment.systemPackages = with pkgs; [
      vim
      firefox
+     git
    ];
   #environment.variables = 
  # environment.shells = with pkgs; [zsh];

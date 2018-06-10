@@ -35,6 +35,7 @@
      firefox
      git
      weechat
+     google-chrome
    ];
   #environment.variables = 
  # environment.shells = with pkgs; [zsh];
@@ -61,7 +62,11 @@
  # user settings
  
  # allow proprietary packages
-  # nixpkgs.config = 
+  
+    nixpkgs.config = {
+    allowUnfree = true;
+    };
+  
  # {
   # allowUnfree = true;
    

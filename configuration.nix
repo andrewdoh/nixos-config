@@ -34,6 +34,7 @@
      vim
      firefox
      git
+     weechat
    ];
   #environment.variables = 
  # environment.shells = with pkgs; [zsh];
@@ -51,7 +52,7 @@
   programs.zsh.interactiveShellInit=''
   export ZSH=${pkgs.oh-my-zsh}/share/oh-my-zsh/
     # Customize your oh-my-zsh options here
-      ZSH_THEME="agnoster"
+      ZSH_THEME="lambda"
       plugins=(git)
 
       source $ZSH/oh-my-zsh.sh

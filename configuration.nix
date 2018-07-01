@@ -36,6 +36,9 @@
      git
      weechat
      google-chrome
+     stack
+     dmenu
+     gnumake
    ];
   #environment.variables = 
  # environment.shells = with pkgs; [zsh];
@@ -67,16 +70,7 @@
     allowUnfree = true;
     };
   
- # {
-  # allowUnfree = true;
-   
- # packageOverrides = pkgs:
-    #            {
-   #                 unstable = import 
-  #              }
- # }
- 
- # users.defaultUserShell = pkgs.zsh;
+  # users.defaultUserShell = pkgs.zsh;
   # List services that you want to enable:
 
   # Enable the OpenSSH daemon.
@@ -107,7 +101,9 @@
   # Enable the KDE Desktop Environment.
   services.xserver.displayManager.sddm.enable = true;
   services.xserver.desktopManager.plasma5.enable = true;
-
+  services.upower.enable = true;
+  systemd.services.upower.enable = true;
+  
   # Define a user account. Don't forget to set a password with ‘passwd’.
    users.extraUsers.andrewdo = {
      isNormalUser = true;

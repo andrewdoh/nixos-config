@@ -39,6 +39,9 @@
      stack
      dmenu
      gnumake
+     gcc
+     python
+     python3
    ];
   #environment.variables = 
  # environment.shells = with pkgs; [zsh];

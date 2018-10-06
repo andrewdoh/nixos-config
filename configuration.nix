@@ -35,13 +35,14 @@
      firefox
      git
      weechat
-     google-chrome
      stack
      dmenu
      gnumake
      gcc
      python
      python3
+     binutils-unwrapped
+     tldr
    ];
   #environment.variables = 
  # environment.shells = with pkgs; [zsh];
@@ -93,8 +94,8 @@
    hardware.pulseaudio.enable = true;
 
   # Enable the X11 windowing system.
-  services.xserver.enable = true;
-  services.xserver.layout = "us";
+  #services.xserver.enable = true;
+  #services.xserver.layout = "us";
   # services.xserver.xkbOptions = "eurosign:e";
   #services.xserver.displayManager.lightdm.enable = true;
   #services.xserver.windowManager.xmonad.enable = true;
@@ -102,10 +103,27 @@
   # services.xserver.libinput.enable = true;
 
   # Enable the KDE Desktop Environment.
-  services.xserver.displayManager.sddm.enable = true;
-  services.xserver.desktopManager.plasma5.enable = true;
-  services.upower.enable = true;
-  systemd.services.upower.enable = true;
+  #services.xserver.displayManager.sddm.enable = true;
+  #services.xserver.desktopManager.plasma5.enable = true;
+  #services.upower.enable = true;
+  #systemd.services.upower.enable = true;
+  
+  # use xmonad 
+  services.xserver = {
+	enable = true;
+	displayManager.lightdm={enable = true;};
+	windowManager.xmonad= {
+		enable = true;
+		enableContribAndExtras = true;
+		extraPackages = haskellPackages: [
+		haskellPackages.xmonad-contrib
+		haskellPackages.xmonad-extras
+		haskellPackages.xmonad
+		];
+		};
+
+	windowManager.default = "xmonad";
+	};
   
   # Define a user account. Don't forget to set a password with ‘passwd’.
    users.extraUsers.andrewdo = {

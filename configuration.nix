@@ -37,6 +37,7 @@
      weechat
      dmenu
      tldr
+     emacs
    ];
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
@@ -69,6 +70,11 @@
    sound.enable = true; hardware.pulseaudio.enable = true;
 
   # Enable the X11 windowing system.
+  # services.xserver.displayManager = {
+  # 	sessionCommands = ''
+  #
+  #	'';
+  # };
   # services.xserver.xkbOptions = "eurosign:e";
   # Enable touchpad support.
   # services.xserver.libinput.enable = true;
@@ -92,7 +98,12 @@
 
 	windowManager.default = "xmonad";
 	};
-  
+ services.redshift = {
+   enable = true;
+   latitude = "34";
+   longitude = "-118";
+ 
+ };
   # Define a user account. Don't forget to set a password with ‘passwd’.
    users.extraUsers.andrewdo = {
      isNormalUser = true;
@@ -107,15 +118,38 @@
   enable = true;
   enableAutosuggestions = true;
   syntaxHighlighting.enable = true;
+  interactiveShellInit= ''
+  export TERM=xterm-256color
+  '';
+  shellAliases = {e="emacs -nw";};
+
   ohMyZsh.enable = true;
   ohMyZsh.plugins = [ "git" ];
   ohMyZsh.theme = "lambda";
   };
 
+  fonts = {
+  	enableDefaultFonts = true;
+	enableFontDir = true;
+	fonts = with pkgs; [
+		fira-code
+		fira-code-symbols
+		powerline-fonts
+		];
+	fontconfig.defaultFonts = {
+      	monospace = [
+        "DejaVu Sans Mono for Powerline"
+	"DejaVu Sans Mono"
+      ];
+    };
+  };
+
+environment.variables = {EDITOR="vim";};
+
   # This value determines the NixOS release with which your system is to be
   # compatible, in order to avoid breaking some software such as database
   # servers. You should change this only after NixOS release notes say you
   # should.
-  system.stateVersion = "18.03"; # Did you read the comment?
-
+  system.stateVersion = "18.09"; # Did you read the comment?
 }
+

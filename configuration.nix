@@ -67,7 +67,14 @@
   # services.printing.enable = true;
 
   # Enable sound.
-   sound.enable = true; hardware.pulseaudio.enable = true;
+   sound.enable = true; 
+   sound.extraConfig = 
+   ''
+     defaults.pcm.!card = "Generic"
+     defaults.ctl.!card = "Generic"
+   '';
+
+  #hardware.pulseaudio.enable = true;
 
   # Enable the X11 windowing system.
   # services.xserver.displayManager = {
@@ -110,7 +117,7 @@
      isNormalUser = true;
      uid = 1000;
      home = "/home/andrewdo";
-     extraGroups = ["wheel" "networkmanager"];
+     extraGroups = ["wheel" "networkmanager" "audio"];
    };
 
   users.defaultUserShell = "/run/current-system/sw/bin/zsh";
